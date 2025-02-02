@@ -2,6 +2,7 @@ package io.github.lucaspg.tutorialmod;
 
 import com.mojang.logging.LogUtils;
 import io.github.lucaspg.tutorialmod.block.ModBlocks;
+import io.github.lucaspg.tutorialmod.component.ModDataComponents;
 import io.github.lucaspg.tutorialmod.item.ModCreativeModeTabs;
 import io.github.lucaspg.tutorialmod.item.ModItems;
 import net.minecraft.world.item.CreativeModeTabs;
@@ -40,6 +41,8 @@ public class TutorialMod {
 
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
+
+        ModDataComponents.register(modEventBus);
 
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
