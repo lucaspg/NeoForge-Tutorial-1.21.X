@@ -1,0 +1,16 @@
+{
+  "values": [
+    "tutorialmod:bismuth_block",
+    "tutorialmod:bismuth_ore",
+    "tutorialmod:bismuth_deepslate_ore",
+    "tutorialmod:bismuth_stairs",
+    "tutorialmod:bismuth_slab",
+    "tutorialmod:bismuth_button",
+    "tutorialmod:bismuth_pressure_plate",
+    "tutorialmod:bismuth_fence",
+    "tutorialmod:bismuth_fence_gate",
+    "tutorialmod:bismuth_wall",
+    "tutorialmod:bismuth_door",
+    "tutorialmod:bismuth_trapdoor"
+  ]
+}
