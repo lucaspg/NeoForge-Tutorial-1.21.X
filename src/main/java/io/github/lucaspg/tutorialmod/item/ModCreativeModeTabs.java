@@ -41,6 +41,10 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.BISMUTH_CHESTPLATE);
                         output.accept(ModItems.BISMUTH_LEGGINGS);
                         output.accept(ModItems.BISMUTH_BOOTS);
+
+                        output.accept(ModItems.BISMUTH_HORSE_ARMOR);
+
+                        output.accept(ModItems.KAUPEN_SMITHING_TEMPLATE);
                     }).build());
 
     public static final Supplier<CreativeModeTab> BISMUTH_BLOCKS_TAB = CREATIVE_MODE_TAB.register("bismuth_blocks_tab",

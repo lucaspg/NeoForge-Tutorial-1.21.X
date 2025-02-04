@@ -51,5 +51,7 @@ public class DataGenerators {
 
         ModDataMapProvider modDataMapProvider = new ModDataMapProvider(packOutput, lookupProvider);
         generator.addProvider(event.includeServer(), modDataMapProvider);
+
+        generator.addProvider(event.includeServer(), new ModDatapackProvider(packOutput, lookupProvider));
     }
 }
