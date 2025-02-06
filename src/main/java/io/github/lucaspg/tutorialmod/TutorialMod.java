@@ -5,6 +5,7 @@ import io.github.lucaspg.tutorialmod.block.ModBlocks;
 import io.github.lucaspg.tutorialmod.component.ModDataComponents;
 import io.github.lucaspg.tutorialmod.item.ModCreativeModeTabs;
 import io.github.lucaspg.tutorialmod.item.ModItems;
+import io.github.lucaspg.tutorialmod.util.ModItemProperties;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
@@ -79,7 +80,7 @@ public class TutorialMod {
     public static class ClientModEvents {
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
-
+            ModItemProperties.addCustomItemProperties();
         }
     }
 }
