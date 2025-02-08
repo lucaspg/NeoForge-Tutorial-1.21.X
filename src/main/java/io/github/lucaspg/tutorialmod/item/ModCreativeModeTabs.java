@@ -46,6 +46,8 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.KAUPEN_SMITHING_TEMPLATE);
 
                         output.accept(ModItems.KAUPEN_BOW);
+
+                        output.accept(ModItems.BAR_BRAWL_MUSIC_DISC);
                     }).build());
 
     public static final Supplier<CreativeModeTab> BISMUTH_BLOCKS_TAB = CREATIVE_MODE_TAB.register("bismuth_blocks_tab",

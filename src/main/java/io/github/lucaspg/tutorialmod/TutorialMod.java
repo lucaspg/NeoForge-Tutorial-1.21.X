@@ -3,8 +3,11 @@ package io.github.lucaspg.tutorialmod;
 import com.mojang.logging.LogUtils;
 import io.github.lucaspg.tutorialmod.block.ModBlocks;
 import io.github.lucaspg.tutorialmod.component.ModDataComponents;
+import io.github.lucaspg.tutorialmod.effect.ModEffects;
 import io.github.lucaspg.tutorialmod.item.ModCreativeModeTabs;
 import io.github.lucaspg.tutorialmod.item.ModItems;
+import io.github.lucaspg.tutorialmod.potion.ModPotions;
+import io.github.lucaspg.tutorialmod.sound.ModSounds;
 import io.github.lucaspg.tutorialmod.util.ModItemProperties;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.neoforged.api.distmarker.Dist;
@@ -44,6 +47,10 @@ public class TutorialMod {
         ModBlocks.register(modEventBus);
 
         ModDataComponents.register(modEventBus);
+        ModSounds.register(modEventBus);
+
+        ModEffects.register(modEventBus);
+        ModPotions.register(modEventBus);
 
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
