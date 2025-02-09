@@ -16,7 +16,7 @@ public class ModEffects {
     public static final DeferredRegister<MobEffect> MOB_EFFECTS =
             DeferredRegister.create(BuiltInRegistries.MOB_EFFECT, TutorialMod.MOD_ID);
 
-    public static final Holder<MobEffect> SLIMEY = MOB_EFFECTS.register("slimey",
+    public static final Holder<MobEffect> SLIMEY_EFFECT = MOB_EFFECTS.register("slimey",
             () -> new SlimeyEffect(MobEffectCategory.NEUTRAL, 0x36ebab)
                     .addAttributeModifier(Attributes.MOVEMENT_SPEED,
                             ResourceLocation.fromNamespaceAndPath(TutorialMod.MOD_ID, "slimey"), -0.25f,

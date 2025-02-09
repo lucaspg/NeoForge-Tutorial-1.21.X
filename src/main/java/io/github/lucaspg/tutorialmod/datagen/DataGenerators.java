@@ -33,7 +33,7 @@ public class DataGenerators {
         );
         generator.addProvider(event.includeServer(), lootTableProvider);
 
-        ModRecipeProvider modRecipeProvider = new ModRecipeProvider(packOutput, lookupProvider);
+        ModRecipeProvider.Runner modRecipeProvider = new ModRecipeProvider.Runner(packOutput, lookupProvider);
         generator.addProvider(event.includeServer(), modRecipeProvider);
 
         BlockTagsProvider blockTagsProvider = new ModBlockTagProvider(packOutput, lookupProvider, existingFileHelper);
