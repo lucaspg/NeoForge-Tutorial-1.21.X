@@ -17,6 +17,7 @@ public class SlimeyEffect extends MobEffect {
             Vec3 initialVec = livingEntity.getDeltaMovement();
             Vec3 climbVec = new Vec3(initialVec.x, 0.2D, initialVec.z);
             livingEntity.setDeltaMovement(climbVec.scale(0.96D));
+            livingEntity.hurtMarked = true;
             return true;
         }
 
