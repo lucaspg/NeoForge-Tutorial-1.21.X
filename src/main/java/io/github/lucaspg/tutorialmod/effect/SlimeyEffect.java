@@ -1,6 +1,8 @@
 package io.github.lucaspg.tutorialmod.effect;
 
+import net.minecraft.network.protocol.game.ClientboundSetEntityMotionPacket;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.LivingEntity;
@@ -13,11 +15,12 @@ public class SlimeyEffect extends MobEffect {
 
     @Override
     public boolean applyEffectTick(ServerLevel level, LivingEntity livingEntity, int amplifier) {
-        if (livingEntity.horizontalCollision) {
+        if (livingEntity.horizontalCollision && livingEntity instanceof ServerPlayer player) {
             Vec3 initialVec = livingEntity.getDeltaMovement();
             Vec3 climbVec = new Vec3(initialVec.x, 0.2D, initialVec.z);
             livingEntity.setDeltaMovement(climbVec.scale(0.96D));
-            livingEntity.hurtMarked = true;
+            player.connection.send(new ClientboundSetEntityMotionPacket(player));
+//            livingEntity.hurtMarked = true;
             return true;
         }
 
