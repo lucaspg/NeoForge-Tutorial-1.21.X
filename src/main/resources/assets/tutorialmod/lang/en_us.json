@@ -65,6 +65,8 @@
   "painting.tutorialmod.saw_them.title": "Saw Them",
   "painting.tutorialmod.saw_them.author": "NanoAttack",
 
+  "enchantment.tutorialmod.lightning_striker": "Lightning Striker",
+
   "tooltip.tutorialmod.magic_block.tooltip": "This Block is very §9MAGICAL§r",
 
   "tooltip.tutorialmod.chisel.shift_down": "This Item can chisel Blocks into Bricks",

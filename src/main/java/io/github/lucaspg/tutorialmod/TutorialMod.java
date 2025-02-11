@@ -4,6 +4,7 @@ import com.mojang.logging.LogUtils;
 import io.github.lucaspg.tutorialmod.block.ModBlocks;
 import io.github.lucaspg.tutorialmod.component.ModDataComponents;
 import io.github.lucaspg.tutorialmod.effect.ModEffects;
+import io.github.lucaspg.tutorialmod.enchantment.ModEnchantmentEffects;
 import io.github.lucaspg.tutorialmod.item.ModCreativeModeTabs;
 import io.github.lucaspg.tutorialmod.item.ModItems;
 import io.github.lucaspg.tutorialmod.potion.ModPotions;
@@ -51,6 +52,8 @@ public class TutorialMod {
 
         ModEffects.register(modEventBus);
         ModPotions.register(modEventBus);
+
+        ModEnchantmentEffects.register(modEventBus);
 
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
