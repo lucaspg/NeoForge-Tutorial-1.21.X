@@ -3,6 +3,7 @@ package io.github.lucaspg.tutorialmod.block;
 import io.github.lucaspg.tutorialmod.TutorialMod;
 import io.github.lucaspg.tutorialmod.block.custom.BismuthLampBlock;
 import io.github.lucaspg.tutorialmod.block.custom.MagicBlock;
+import io.github.lucaspg.tutorialmod.block.custom.RadishCropBlock;
 import io.github.lucaspg.tutorialmod.item.ModItems;
 import io.github.lucaspg.tutorialmod.sound.ModSounds;
 import net.minecraft.util.valueproviders.UniformInt;
@@ -68,6 +69,9 @@ public class ModBlocks {
     public static final DeferredBlock<Block> BISMUTH_LAMP = registerBlock("bismuth_lamp",
             () -> new BismuthLampBlock(BlockBehaviour.Properties.of().strength(2f)
                     .requiresCorrectToolForDrops().lightLevel(state -> state.getValue(BismuthLampBlock.CLICKED) ? 15 : 0)));
+
+    public static final DeferredBlock<Block> RADISH_CROP = BLOCKS.register("radish_crop",
+            () -> new RadishCropBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.BEETROOTS)));
 
 
     // helper method

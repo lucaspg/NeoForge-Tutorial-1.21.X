@@ -3,13 +3,18 @@ package io.github.lucaspg.tutorialmod.datagen;
 import io.github.lucaspg.tutorialmod.TutorialMod;
 import io.github.lucaspg.tutorialmod.block.ModBlocks;
 import io.github.lucaspg.tutorialmod.block.custom.BismuthLampBlock;
+import io.github.lucaspg.tutorialmod.block.custom.RadishCropBlock;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.block.CropBlock;
+import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
 import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.registries.DeferredBlock;
+
+import java.util.function.Function;
 
 public class ModBlockStateProvider extends BlockStateProvider {
     public ModBlockStateProvider(PackOutput output, ExistingFileHelper exFileHelper) {
@@ -49,6 +54,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
         blockItem(ModBlocks.BISMUTH_TRAPDOOR, "_bottom");
 
         customLamp();
+
+        makeCrop((CropBlock) ModBlocks.RADISH_CROP.get(), "radish_crop_stage", "radish_crop_stage");
     }
 
     private void customLamp() {
@@ -76,5 +83,24 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
     private void blockItem(DeferredBlock<?> deferredBlock, String appendix) {
         simpleBlockItem(deferredBlock.get(), new ModelFile.UncheckedModelFile("tutorialmod:block/" + deferredBlock.getId().getPath() + appendix));
+    }
+
+    public void makeCrop(CropBlock block, String modelName, String textureName) {
+        Function<BlockState, ConfiguredModel[]> function = state -> states(state, block, modelName, textureName);
+
+        getVariantBuilder(block).forAllStates(function);
+    }
+
+    private ConfiguredModel[] states(BlockState state, CropBlock block, String modelName, String textureName) {
+        ConfiguredModel[] models = new ConfiguredModel[1];
+
+        String name = modelName + state.getValue(((RadishCropBlock) block).getAgeProperty());
+        ResourceLocation location = ResourceLocation.fromNamespaceAndPath(TutorialMod.MOD_ID, "block/" + textureName + state.getValue(((RadishCropBlock) block).getAgeProperty()));
+
+        models[0] = new ConfiguredModel(models()
+                .crop(name, location)
+                .renderType("cutout"));
+
+        return models;
     }
 }
