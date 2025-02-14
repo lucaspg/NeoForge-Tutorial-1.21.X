@@ -2,6 +2,7 @@ package io.github.lucaspg.tutorialmod.block;
 
 import io.github.lucaspg.tutorialmod.TutorialMod;
 import io.github.lucaspg.tutorialmod.block.custom.BismuthLampBlock;
+import io.github.lucaspg.tutorialmod.block.custom.GojiBerryBushBlock;
 import io.github.lucaspg.tutorialmod.block.custom.MagicBlock;
 import io.github.lucaspg.tutorialmod.block.custom.RadishCropBlock;
 import io.github.lucaspg.tutorialmod.item.ModItems;
@@ -72,6 +73,9 @@ public class ModBlocks {
 
     public static final DeferredBlock<Block> RADISH_CROP = BLOCKS.register("radish_crop",
             () -> new RadishCropBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.BEETROOTS)));
+
+    public static final DeferredBlock<Block> GOJI_BERRY_BUSH = BLOCKS.register("goji_berry_bush",
+            () -> new GojiBerryBushBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SWEET_BERRY_BUSH)));
 
 
     // helper method
