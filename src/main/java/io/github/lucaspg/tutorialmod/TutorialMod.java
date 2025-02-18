@@ -5,11 +5,14 @@ import io.github.lucaspg.tutorialmod.block.ModBlocks;
 import io.github.lucaspg.tutorialmod.component.ModDataComponents;
 import io.github.lucaspg.tutorialmod.effect.ModEffects;
 import io.github.lucaspg.tutorialmod.enchantment.ModEnchantmentEffects;
+import io.github.lucaspg.tutorialmod.entity.ModEntities;
+import io.github.lucaspg.tutorialmod.entity.client.GeckoRenderer;
 import io.github.lucaspg.tutorialmod.item.ModCreativeModeTabs;
 import io.github.lucaspg.tutorialmod.item.ModItems;
 import io.github.lucaspg.tutorialmod.potion.ModPotions;
 import io.github.lucaspg.tutorialmod.sound.ModSounds;
 import io.github.lucaspg.tutorialmod.util.ModItemProperties;
+import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
@@ -54,6 +57,7 @@ public class TutorialMod {
         ModPotions.register(modEventBus);
 
         ModEnchantmentEffects.register(modEventBus);
+        ModEntities.register(modEventBus);
 
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
@@ -91,6 +95,7 @@ public class TutorialMod {
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
             ModItemProperties.addCustomItemProperties();
+            EntityRenderers.register(ModEntities.GECKO.get(), GeckoRenderer::new);
         }
     }
 }

@@ -2,6 +2,7 @@ package io.github.lucaspg.tutorialmod.item;
 
 import io.github.lucaspg.tutorialmod.TutorialMod;
 import io.github.lucaspg.tutorialmod.block.ModBlocks;
+import io.github.lucaspg.tutorialmod.entity.ModEntities;
 import io.github.lucaspg.tutorialmod.item.custom.ChiselItem;
 import io.github.lucaspg.tutorialmod.item.custom.FuelItem;
 import io.github.lucaspg.tutorialmod.item.custom.HammerItem;
@@ -11,6 +12,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.*;
 import net.neoforged.bus.api.IEventBus;
+import net.neoforged.neoforge.common.DeferredSpawnEggItem;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
@@ -92,6 +94,10 @@ public class ModItems {
 
     public static final DeferredItem<Item> GOJI_BERRIES = ITEMS.register("goji_berries",
             () -> new ItemNameBlockItem(ModBlocks.GOJI_BERRY_BUSH.get(), new Item.Properties().food(ModFoodProperties.GOJI_BERRY)));
+
+    public static final DeferredItem<Item> GECKO_SPAWN_EGG = ITEMS.register("gecko_spawn_egg",
+            () -> new DeferredSpawnEggItem(ModEntities.GECKO, 0x31afaf, 0xffac00,
+                    new Item.Properties()));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
