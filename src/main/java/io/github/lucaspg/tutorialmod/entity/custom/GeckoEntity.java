@@ -24,7 +24,6 @@ import org.jetbrains.annotations.Nullable;
 public class GeckoEntity extends Animal {
 
     public final AnimationState idleAnimationState = new AnimationState();
-    private int idleAnimationTimeout = 0;
 
     private static final EntityDataAccessor<Integer> VARIANT =
             SynchedEntityData.defineId(GeckoEntity.class, EntityDataSerializers.INT);
@@ -35,7 +34,7 @@ public class GeckoEntity extends Animal {
 
     @Override
     protected void registerGoals() {
-        this.goalSelector.addGoal(0, new FloatGoal(this));
+        //this.goalSelector.addGoal(0, new FloatGoal(this));
 
         this.goalSelector.addGoal(1, new PanicGoal(this, 2.0));
         this.goalSelector.addGoal(2, new BreedGoal(this, 1.0));
@@ -67,13 +66,11 @@ public class GeckoEntity extends Animal {
         return baby;
     }
 
-    private void setupAnimationStates() {
-        if (this.idleAnimationTimeout <= 0) {
-            this.idleAnimationTimeout = 80;
-            this.idleAnimationState.start(this.tickCount);
-        } else {
-            --this.idleAnimationTimeout;
-        }
+    @Override
+    protected void updateWalkAnimation(float partialTick) {
+        float f = Math.min(partialTick * 25.0F, 1.0F);
+
+        this.walkAnimation.update(f, 0.4F);
     }
 
     @Override
@@ -81,7 +78,7 @@ public class GeckoEntity extends Animal {
         super.tick();
 
         if (this.level().isClientSide()) {
-            this.setupAnimationStates();
+            this.idleAnimationState.animateWhen(!this.walkAnimation.isMoving(), this.tickCount);
         }
     }
 
@@ -122,5 +119,10 @@ public class GeckoEntity extends Animal {
         GeckoVariant variant = Util.getRandom(GeckoVariant.values(), this.random);
         this.setVariant(variant);
         return super.finalizeSpawn(level, difficulty, spawnType, spawnGroupData);
+    }
+
+    @Override
+    public boolean isPushedByFluid() {
+        return false;
     }
 }

@@ -65,9 +65,13 @@ public class GeckoModel<T extends GeckoEntity> extends HierarchicalModel<T> {
     public void setupAnim(GeckoEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
         this.root().getAllParts().forEach(ModelPart::resetPose);
         this.applyHeadRotation(netHeadYaw, headPitch);
+        if (entity.isInWaterOrBubble()) {
+            this.animateWalk(GeckoAnimations.ANIM_GECKO_SWIM, limbSwing, limbSwingAmount, 1.5F, 2.5F);
+        } else {
+            this.animateWalk(GeckoAnimations.ANIM_GECKO_WALK, limbSwing, limbSwingAmount, 1.5F, 2.5F);
+        }
 
-        this.animateWalk(GeckoAnimations.ANIM_GECKO_WALK, limbSwing, limbSwingAmount, 2f, 2.5f);
-        this.animate(entity.idleAnimationState, GeckoAnimations.ANIM_GECKO_IDLE, ageInTicks, 1f);
+        this.animate(entity.idleAnimationState, GeckoAnimations.ANIM_GECKO_IDLE, ageInTicks);
     }
 
     private void applyHeadRotation(float headYaw, float headPitch) {
