@@ -7,6 +7,8 @@ import io.github.lucaspg.tutorialmod.effect.ModEffects;
 import io.github.lucaspg.tutorialmod.enchantment.ModEnchantmentEffects;
 import io.github.lucaspg.tutorialmod.entity.ModEntities;
 import io.github.lucaspg.tutorialmod.entity.client.GeckoRenderer;
+import io.github.lucaspg.tutorialmod.entity.client.TomahawkProjectileRenderer;
+import io.github.lucaspg.tutorialmod.entity.custom.TomahawkProjectileEntity;
 import io.github.lucaspg.tutorialmod.item.ModCreativeModeTabs;
 import io.github.lucaspg.tutorialmod.item.ModItems;
 import io.github.lucaspg.tutorialmod.potion.ModPotions;
@@ -96,6 +98,7 @@ public class TutorialMod {
         public static void onClientSetup(FMLClientSetupEvent event) {
             ModItemProperties.addCustomItemProperties();
             EntityRenderers.register(ModEntities.GECKO.get(), GeckoRenderer::new);
+            EntityRenderers.register(ModEntities.TOMAHAWK.get(), TomahawkProjectileRenderer::new);
         }
     }
 }

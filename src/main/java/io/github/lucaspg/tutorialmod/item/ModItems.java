@@ -3,10 +3,7 @@ package io.github.lucaspg.tutorialmod.item;
 import io.github.lucaspg.tutorialmod.TutorialMod;
 import io.github.lucaspg.tutorialmod.block.ModBlocks;
 import io.github.lucaspg.tutorialmod.entity.ModEntities;
-import io.github.lucaspg.tutorialmod.item.custom.ChiselItem;
-import io.github.lucaspg.tutorialmod.item.custom.FuelItem;
-import io.github.lucaspg.tutorialmod.item.custom.HammerItem;
-import io.github.lucaspg.tutorialmod.item.custom.ModArmorItem;
+import io.github.lucaspg.tutorialmod.item.custom.*;
 import io.github.lucaspg.tutorialmod.sound.ModSounds;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -98,6 +95,9 @@ public class ModItems {
     public static final DeferredItem<Item> GECKO_SPAWN_EGG = ITEMS.register("gecko_spawn_egg",
             () -> new DeferredSpawnEggItem(ModEntities.GECKO, 0x31afaf, 0xffac00,
                     new Item.Properties()));
+
+    public static final DeferredItem<Item> TOMAHAWK = ITEMS.register("tomahawk",
+            () -> new TomahawkItem(new Item.Properties().stacksTo(16)));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
