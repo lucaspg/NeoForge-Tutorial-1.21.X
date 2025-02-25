@@ -91,6 +91,8 @@ public class ModCreativeModeTabs {
 
                         output.accept(ModBlocks.BLOODWOOD_LEAVES.get());
 
+                        output.accept(ModBlocks.CHAIR.get());
+
                     }).build());
 
     public static void register(IEventBus eventBus) {
