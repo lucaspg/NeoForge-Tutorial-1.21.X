@@ -1,6 +1,7 @@
 package io.github.lucaspg.tutorialmod.entity;
 
 import io.github.lucaspg.tutorialmod.TutorialMod;
+import io.github.lucaspg.tutorialmod.entity.custom.ChairEntity;
 import io.github.lucaspg.tutorialmod.entity.custom.GeckoEntity;
 import io.github.lucaspg.tutorialmod.entity.custom.TomahawkProjectileEntity;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -22,6 +23,10 @@ public class ModEntities {
     public static final Supplier<EntityType<TomahawkProjectileEntity>> TOMAHAWK =
             ENTITY_TYPES.register("tomahawk", () -> EntityType.Builder.<TomahawkProjectileEntity>of(TomahawkProjectileEntity::new, MobCategory.MISC)
                     .sized(0.5f, 1.15f).build("tomahawk"));
+
+    public static final Supplier<EntityType<ChairEntity>> CHAIR_ENTITY =
+            ENTITY_TYPES.register("chair_entity", () -> EntityType.Builder.of(ChairEntity::new, MobCategory.MISC)
+                    .sized(0.5f, 0.5f).build("chair_entity"));
 
     public static void register(IEventBus eventBus) {
         ENTITY_TYPES.register(eventBus);

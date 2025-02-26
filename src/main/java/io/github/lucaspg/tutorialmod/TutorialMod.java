@@ -6,6 +6,7 @@ import io.github.lucaspg.tutorialmod.component.ModDataComponents;
 import io.github.lucaspg.tutorialmod.effect.ModEffects;
 import io.github.lucaspg.tutorialmod.enchantment.ModEnchantmentEffects;
 import io.github.lucaspg.tutorialmod.entity.ModEntities;
+import io.github.lucaspg.tutorialmod.entity.client.ChairRenderer;
 import io.github.lucaspg.tutorialmod.entity.client.GeckoRenderer;
 import io.github.lucaspg.tutorialmod.entity.client.TomahawkProjectileRenderer;
 import io.github.lucaspg.tutorialmod.entity.custom.TomahawkProjectileEntity;
@@ -99,6 +100,8 @@ public class TutorialMod {
             ModItemProperties.addCustomItemProperties();
             EntityRenderers.register(ModEntities.GECKO.get(), GeckoRenderer::new);
             EntityRenderers.register(ModEntities.TOMAHAWK.get(), TomahawkProjectileRenderer::new);
+
+            EntityRenderers.register(ModEntities.CHAIR_ENTITY.get(), ChairRenderer::new);
         }
     }
 }
