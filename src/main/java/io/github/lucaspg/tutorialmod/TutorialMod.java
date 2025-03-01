@@ -12,6 +12,8 @@ import io.github.lucaspg.tutorialmod.entity.client.TomahawkProjectileRenderer;
 import io.github.lucaspg.tutorialmod.entity.custom.TomahawkProjectileEntity;
 import io.github.lucaspg.tutorialmod.item.ModCreativeModeTabs;
 import io.github.lucaspg.tutorialmod.item.ModItems;
+import io.github.lucaspg.tutorialmod.particle.BismuthParticles;
+import io.github.lucaspg.tutorialmod.particle.ModParticles;
 import io.github.lucaspg.tutorialmod.potion.ModPotions;
 import io.github.lucaspg.tutorialmod.sound.ModSounds;
 import io.github.lucaspg.tutorialmod.util.ModItemProperties;
@@ -27,6 +29,7 @@ import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.neoforged.neoforge.client.event.RegisterParticleProvidersEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
@@ -64,6 +67,7 @@ public class TutorialMod {
         ModEntities.register(modEventBus);
 
         ModVillagers.register(modEventBus);
+        ModParticles.register(modEventBus);
 
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
@@ -105,6 +109,11 @@ public class TutorialMod {
             EntityRenderers.register(ModEntities.TOMAHAWK.get(), TomahawkProjectileRenderer::new);
 
             EntityRenderers.register(ModEntities.CHAIR_ENTITY.get(), ChairRenderer::new);
+        }
+
+        @SubscribeEvent
+        public static void registerParticleFactories(RegisterParticleProvidersEvent event) {
+            event.registerSpriteSet(ModParticles.BISMUTH_PARTICLES.get(), BismuthParticles.Provider::new);
         }
     }
 }
