@@ -12,6 +12,7 @@ import io.github.lucaspg.tutorialmod.entity.client.TomahawkProjectileRenderer;
 import io.github.lucaspg.tutorialmod.entity.custom.TomahawkProjectileEntity;
 import io.github.lucaspg.tutorialmod.item.ModCreativeModeTabs;
 import io.github.lucaspg.tutorialmod.item.ModItems;
+import io.github.lucaspg.tutorialmod.loot.ModLootModifiers;
 import io.github.lucaspg.tutorialmod.particle.BismuthParticles;
 import io.github.lucaspg.tutorialmod.particle.ModParticles;
 import io.github.lucaspg.tutorialmod.potion.ModPotions;
@@ -68,6 +69,8 @@ public class TutorialMod {
 
         ModVillagers.register(modEventBus);
         ModParticles.register(modEventBus);
+
+        ModLootModifiers.register(modEventBus);
 
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
