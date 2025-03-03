@@ -12,10 +12,12 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.Vec2;
+import net.minecraft.world.phys.Vec3;
 
 public class TomahawkProjectileEntity extends AbstractArrow {
     private float rotation;
     public Vec2 groundedOffset;
+    public double translateYOffset = -1.0f;
 
     public TomahawkProjectileEntity(EntityType<? extends AbstractArrow> entityType, Level level) {
         super(entityType, level);
@@ -72,10 +74,30 @@ public class TomahawkProjectileEntity extends AbstractArrow {
         }
 
         if(result.getDirection() == Direction.DOWN) {
-            groundedOffset = new Vec2(115f,180f);
+            float yOffset = getYOffset(result);
+            translateYOffset = -0.2f;
+            groundedOffset = new Vec2(115f,yOffset);
         }
         if(result.getDirection() == Direction.UP) {
-            groundedOffset = new Vec2(285f,180f);
+            float yOffset = getYOffset(result);
+            translateYOffset = 0.2f;
+            groundedOffset = new Vec2(285f,yOffset);
         }
+    }
+
+    private float getYOffset(BlockHitResult result) {
+        Vec3 impactPos = result.getLocation();
+        Vec3 previousPos = this.position().subtract(this.getDeltaMovement().normalize());
+
+        double deltaX = Math.abs(previousPos.x - impactPos.x);
+        double deltaZ = Math.abs(previousPos.z - impactPos.z);
+
+        float yOffset;
+        if (deltaX > deltaZ) {
+            yOffset = (previousPos.x > impactPos.x) ? -90f : 90f;
+        } else {
+            yOffset = (previousPos.z > impactPos.z) ? 180f : 0f;
+        }
+        return yOffset;
     }
 }

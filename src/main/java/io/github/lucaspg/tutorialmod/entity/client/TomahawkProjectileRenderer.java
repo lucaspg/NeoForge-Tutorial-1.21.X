@@ -32,7 +32,7 @@ public class TomahawkProjectileRenderer extends EntityRenderer<TomahawkProjectil
         } else {
             poseStack.mulPose(Axis.YP.rotationDegrees(pEntity.groundedOffset.y));
             poseStack.mulPose(Axis.XP.rotationDegrees(pEntity.groundedOffset.x));
-            poseStack.translate(0, -1.0f, 0);
+            poseStack.translate(0, pEntity.translateYOffset, 0);
         }
 
         VertexConsumer vertexconsumer = ItemRenderer.getFoilBufferDirect(

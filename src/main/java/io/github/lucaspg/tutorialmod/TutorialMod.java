@@ -9,7 +9,6 @@ import io.github.lucaspg.tutorialmod.entity.ModEntities;
 import io.github.lucaspg.tutorialmod.entity.client.ChairRenderer;
 import io.github.lucaspg.tutorialmod.entity.client.GeckoRenderer;
 import io.github.lucaspg.tutorialmod.entity.client.TomahawkProjectileRenderer;
-import io.github.lucaspg.tutorialmod.entity.custom.TomahawkProjectileEntity;
 import io.github.lucaspg.tutorialmod.item.ModCreativeModeTabs;
 import io.github.lucaspg.tutorialmod.item.ModItems;
 import io.github.lucaspg.tutorialmod.loot.ModLootModifiers;
