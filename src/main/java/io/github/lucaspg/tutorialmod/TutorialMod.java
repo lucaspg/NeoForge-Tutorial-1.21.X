@@ -2,6 +2,8 @@ package io.github.lucaspg.tutorialmod;
 
 import com.mojang.logging.LogUtils;
 import io.github.lucaspg.tutorialmod.block.ModBlocks;
+import io.github.lucaspg.tutorialmod.block.entity.ModBlockEntities;
+import io.github.lucaspg.tutorialmod.block.entity.renderer.PedestalBlockEntityRenderer;
 import io.github.lucaspg.tutorialmod.component.ModDataComponents;
 import io.github.lucaspg.tutorialmod.effect.ModEffects;
 import io.github.lucaspg.tutorialmod.enchantment.ModEnchantmentEffects;
@@ -30,6 +32,7 @@ import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.event.RegisterParticleProvidersEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
@@ -71,6 +74,7 @@ public class TutorialMod {
         ModParticles.register(modEventBus);
 
         ModLootModifiers.register(modEventBus);
+        ModBlockEntities.register(modEventBus);
 
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
@@ -117,6 +121,11 @@ public class TutorialMod {
         @SubscribeEvent
         public static void registerParticleFactories(RegisterParticleProvidersEvent event) {
             event.registerSpriteSet(ModParticles.BISMUTH_PARTICLES.get(), BismuthParticles.Provider::new);
+        }
+
+        @SubscribeEvent
+        public static void registerBER(EntityRenderersEvent.RegisterRenderers event) {
+            event.registerBlockEntityRenderer(ModBlockEntities.PEDESTAL_BE.get(), PedestalBlockEntityRenderer::new);
         }
     }
 }
