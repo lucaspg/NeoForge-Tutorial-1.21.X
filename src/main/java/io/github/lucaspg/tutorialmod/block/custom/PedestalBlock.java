@@ -3,10 +3,12 @@ package io.github.lucaspg.tutorialmod.block.custom;
 import com.mojang.serialization.MapCodec;
 import io.github.lucaspg.tutorialmod.block.entity.PedestalBlockEntity;
 import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
+import net.minecraft.world.SimpleMenuProvider;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
@@ -65,15 +67,25 @@ public class PedestalBlock extends BaseEntityBlock {
     @Override
     protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
         if (level.getBlockEntity(pos) instanceof PedestalBlockEntity pedestalBlockEntity) {
-            if (pedestalBlockEntity.inventory.getStackInSlot(0).isEmpty() && !stack.isEmpty()) {
-                pedestalBlockEntity.inventory.insertItem(0, stack.copy(), false);
-                stack.shrink(1);
-                level.playSound(player, pos, SoundEvents.ITEM_PICKUP, SoundSource.BLOCKS, 1f, 2f);
-            } else if (stack.isEmpty()) {
-                ItemStack stackOnPedestal = pedestalBlockEntity.inventory.extractItem(0, 1, false);
-                player.setItemInHand(InteractionHand.MAIN_HAND, stackOnPedestal);
-                pedestalBlockEntity.clearContents();
-                level.playSound(player, pos, SoundEvents.ITEM_PICKUP, SoundSource.BLOCKS, 1f, 1f);
+            if (level.isClientSide() && !player.isCrouching()) {
+                if (pedestalBlockEntity.inventory.getStackInSlot(0).isEmpty() && !stack.isEmpty()) {
+                    level.playSound(player, pos, SoundEvents.ITEM_PICKUP, SoundSource.BLOCKS, 1f, 2f);
+                } else if (stack.isEmpty() && !pedestalBlockEntity.inventory.getStackInSlot(0).isEmpty()) {
+                    level.playSound(player, pos, SoundEvents.ITEM_PICKUP, SoundSource.BLOCKS, 1f, 1f);
+                }
+            } else if (!level.isClientSide){
+                if (player.isCrouching()) {
+                    player.openMenu(new SimpleMenuProvider(pedestalBlockEntity, Component.literal("Pedestal")), pos);
+                } else {
+                    if (pedestalBlockEntity.inventory.getStackInSlot(0).isEmpty() && !stack.isEmpty()) {
+                        pedestalBlockEntity.inventory.insertItem(0, stack.copy(), false);
+                        stack.shrink(1);
+                    } else if (stack.isEmpty()) {
+                        ItemStack stackOnPedestal = pedestalBlockEntity.inventory.extractItem(0, 1, false);
+                        player.setItemInHand(InteractionHand.MAIN_HAND, stackOnPedestal);
+                        pedestalBlockEntity.clearContents();
+                    }
+                }
             }
         }
 

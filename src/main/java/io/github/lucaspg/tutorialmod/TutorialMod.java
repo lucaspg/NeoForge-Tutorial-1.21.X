@@ -18,6 +18,8 @@ import io.github.lucaspg.tutorialmod.loot.ModLootModifiers;
 import io.github.lucaspg.tutorialmod.particle.BismuthParticles;
 import io.github.lucaspg.tutorialmod.particle.ModParticles;
 import io.github.lucaspg.tutorialmod.potion.ModPotions;
+import io.github.lucaspg.tutorialmod.screen.ModMenuTypes;
+import io.github.lucaspg.tutorialmod.screen.custom.PedestalScreen;
 import io.github.lucaspg.tutorialmod.sound.ModSounds;
 import io.github.lucaspg.tutorialmod.util.ModItemProperties;
 import io.github.lucaspg.tutorialmod.villager.ModVillagers;
@@ -33,6 +35,7 @@ import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
+import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 import net.neoforged.neoforge.client.event.RegisterParticleProvidersEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
@@ -75,6 +78,8 @@ public class TutorialMod {
 
         ModLootModifiers.register(modEventBus);
         ModBlockEntities.register(modEventBus);
+
+        ModMenuTypes.register(modEventBus);
 
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
@@ -126,6 +131,11 @@ public class TutorialMod {
         @SubscribeEvent
         public static void registerBER(EntityRenderersEvent.RegisterRenderers event) {
             event.registerBlockEntityRenderer(ModBlockEntities.PEDESTAL_BE.get(), PedestalBlockEntityRenderer::new);
+        }
+
+        @SubscribeEvent
+        public static void registerScreens(RegisterMenuScreensEvent event) {
+            event.register(ModMenuTypes.PEDESTAL_MENU.get(), PedestalScreen::new);
         }
     }
 }
