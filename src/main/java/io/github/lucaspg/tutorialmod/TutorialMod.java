@@ -19,6 +19,7 @@ import io.github.lucaspg.tutorialmod.particle.BismuthParticles;
 import io.github.lucaspg.tutorialmod.particle.ModParticles;
 import io.github.lucaspg.tutorialmod.potion.ModPotions;
 import io.github.lucaspg.tutorialmod.screen.ModMenuTypes;
+import io.github.lucaspg.tutorialmod.screen.custom.GrowthChamberScreen;
 import io.github.lucaspg.tutorialmod.screen.custom.PedestalScreen;
 import io.github.lucaspg.tutorialmod.sound.ModSounds;
 import io.github.lucaspg.tutorialmod.util.ModItemProperties;
@@ -136,6 +137,7 @@ public class TutorialMod {
         @SubscribeEvent
         public static void registerScreens(RegisterMenuScreensEvent event) {
             event.register(ModMenuTypes.PEDESTAL_MENU.get(), PedestalScreen::new);
+            event.register(ModMenuTypes.GROWTH_CHAMBER_MENU.get(), GrowthChamberScreen::new);
         }
     }
 }
