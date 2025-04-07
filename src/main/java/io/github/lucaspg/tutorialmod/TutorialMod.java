@@ -18,6 +18,7 @@ import io.github.lucaspg.tutorialmod.loot.ModLootModifiers;
 import io.github.lucaspg.tutorialmod.particle.BismuthParticles;
 import io.github.lucaspg.tutorialmod.particle.ModParticles;
 import io.github.lucaspg.tutorialmod.potion.ModPotions;
+import io.github.lucaspg.tutorialmod.recipe.ModRecipes;
 import io.github.lucaspg.tutorialmod.screen.ModMenuTypes;
 import io.github.lucaspg.tutorialmod.screen.custom.GrowthChamberScreen;
 import io.github.lucaspg.tutorialmod.screen.custom.PedestalScreen;
@@ -81,6 +82,7 @@ public class TutorialMod {
         ModBlockEntities.register(modEventBus);
 
         ModMenuTypes.register(modEventBus);
+        ModRecipes.register(modEventBus);
 
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
