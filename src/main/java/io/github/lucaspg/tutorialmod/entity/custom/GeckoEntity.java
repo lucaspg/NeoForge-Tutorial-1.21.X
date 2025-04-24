@@ -156,18 +156,18 @@ public class GeckoEntity extends Animal {
     @Override
     public void startSeenByPlayer(ServerPlayer serverPlayer) {
         super.startSeenByPlayer(serverPlayer);
-        this.bossEvent.addPlayer(serverPlayer);
+        //this.bossEvent.addPlayer(serverPlayer);
     }
 
     @Override
     public void stopSeenByPlayer(ServerPlayer serverPlayer) {
         super.stopSeenByPlayer(serverPlayer);
-        this.bossEvent.removePlayer(serverPlayer);
+        //this.bossEvent.removePlayer(serverPlayer);
     }
 
     @Override
     public void aiStep() {
         super.aiStep();
-        this.bossEvent.setProgress(this.getHealth() / this.getMaxHealth());
+        //this.bossEvent.setProgress(this.getHealth() / this.getMaxHealth());
     }
 }
